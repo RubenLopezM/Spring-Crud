@@ -7,10 +7,7 @@ import com.example.Ejercicio.DB0.Persona.application.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,13 +18,13 @@ public class GetController {
     PersonaService personaService;
 
     @GetMapping("{id}")
-    public ResponseEntity<PersonaoutputDTO> getpersonByid(@PathVariable Integer id) throws PersonNotFoundException {
+    public ResponseEntity<PersonaoutputDTO> getpersonByid(@PathVariable String id) throws PersonNotFoundException {
          return new ResponseEntity<PersonaoutputDTO>(personaService.findPersonaid(id),HttpStatus.OK);
     }
 
     @GetMapping("/usuario/{usuario}")
-    public List <PersonaoutputDTO> getpersonusuario(@PathVariable String usuario) throws Exception{
-           return personaService.findUsuario(usuario);
+    public List <PersonaoutputDTO> getpersonusuario(@PathVariable String usuario, @RequestParam int page) throws Exception{
+           return personaService.findUsuario(usuario, page);
     }
 
     @GetMapping

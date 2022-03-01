@@ -4,6 +4,8 @@ import com.example.Ejercicio.DB0.Persona.Infrastructure.Controller.DTO.input.Per
 import com.example.Ejercicio.DB0.Persona.Infrastructure.Controller.DTO.output.PersonaoutputDTO;
 import com.example.Ejercicio.DB0.Persona.application.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,7 +18,7 @@ public class PutController {
     PersonaService personaService;
 
     @PutMapping("/persona/{id}")
-    public PersonaoutputDTO updatePerson(@PathVariable Integer id, @RequestBody PersonainputDTO personainputDTO) throws Exception{
-                return personaService.setPerson(personainputDTO,id);
+    public ResponseEntity <PersonaoutputDTO> updatePerson(@PathVariable String id, @RequestBody PersonainputDTO personainputDTO) throws Exception{
+                return new ResponseEntity<PersonaoutputDTO>(personaService.setPerson(personainputDTO,id), HttpStatus.OK);
     }
 }

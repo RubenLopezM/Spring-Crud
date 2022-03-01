@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonainputDTO implements Serializable {
 
-    private Integer id_persona;
+    private String id_persona;
     private String usuario;
     private String password;
     private String name;

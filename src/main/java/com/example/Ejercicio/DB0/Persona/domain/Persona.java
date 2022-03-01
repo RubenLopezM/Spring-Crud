@@ -1,12 +1,13 @@
 package com.example.Ejercicio.DB0.Persona.domain;
 
+import com.example.Ejercicio.DB0.Estudiante.domain.Estudiante;
+import com.example.Ejercicio.DB0.StringPrefixedSequenceIdGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.util.Date;
 
@@ -16,9 +17,16 @@ import java.util.Date;
 public class Persona {
 
     @Id
-    @GeneratedValue
-    @Column(updatable = false)
-    private Integer id_persona;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "personas_seq")
+    @GenericGenerator(
+            name = "personas_seq",
+            strategy = "com.example.Ejercicio.DB0.StringPrefixedSequenceIdGenerator",
+            parameters = {
+                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "1"),
+            })
+
+    @Column(name = "id_persona",updatable = false)
+    private String id_persona;
     @Column(nullable = false)
     private String usuario;
     @Column(nullable = false)
@@ -38,4 +46,9 @@ public class Persona {
     private Date created_date;
     private String imagen_url;
     private Date termination_date;
+
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Estudiante estudiante;
+
+
 }

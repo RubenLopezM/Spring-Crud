@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 
-public interface Personarepo extends JpaRepository<Persona,Integer> {
+public interface Personarepo extends JpaRepository<Persona,String> {
 
     @Query("select u from Persona u where u.usuario= :usuario")
     List<PersonaoutputDTO> buscaPorNombre(@Param("usuario") String usuario, Pageable pageable);

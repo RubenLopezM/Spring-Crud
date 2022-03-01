@@ -1,20 +1,22 @@
-package com.example.Ejercicio.DB0.Persona.Infrastructure.Controller;
+package com.example.Ejercicio.DB0.Estudiante.infrastructure.Controller;
 
 import com.example.Ejercicio.DB0.Errores.PersonNotFoundException;
-import com.example.Ejercicio.DB0.Persona.application.PersonaService;
+import com.example.Ejercicio.DB0.Estudiante.application.EstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("estudiante")
 @RestController
-public class DeleteController {
+public class DeleteEstudianteController {
 
     @Autowired
-    PersonaService personaService;
+    EstudianteService estudianteService;
 
-    @DeleteMapping("persona/{id}")
+    @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable String id) throws PersonNotFoundException {
-          personaService.deletePerson(id);
+        estudianteService.deleteEstudiante(id);
     }
 }

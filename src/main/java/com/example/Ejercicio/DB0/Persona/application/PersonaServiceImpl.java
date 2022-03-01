@@ -38,16 +38,16 @@ public class PersonaServiceImpl implements PersonaService {
 
 
     @Override
-    public PersonaoutputDTO findPersonaid(Integer id) throws PersonNotFoundException {
+    public PersonaoutputDTO findPersonaid(String id) throws PersonNotFoundException {
         PersonaoutputDTO persona = new PersonaoutputDTO(personarepo.findById(id).orElseThrow(()->new PersonNotFoundException("No hay ninguna persona con ID:"+id))) ;
         return persona;
 
     }
 
     @Override
-    public List<PersonaoutputDTO> findUsuario(String usuario) {
+    public List<PersonaoutputDTO> findUsuario(String usuario, int page) {
 
-        return personarepo.buscaPorNombre(usuario, PageRequest.of(0,5));
+        return personarepo.buscaPorNombre(usuario, PageRequest.of(page,5));
     }
 
     @Override
@@ -59,7 +59,7 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public PersonaoutputDTO setPerson(PersonainputDTO personainputDTO, Integer id) throws UnprocesableException, PersonNotFoundException {
+    public PersonaoutputDTO setPerson(PersonainputDTO personainputDTO, String id) throws UnprocesableException, PersonNotFoundException {
 
         this.validar(personainputDTO);
        Persona persona= personarepo.findById(id).orElseThrow(()->new PersonNotFoundException("No se ha encontrado el registro"));
@@ -78,7 +78,7 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public void deletePerson(Integer id) throws PersonNotFoundException {
+    public void deletePerson(String id) throws PersonNotFoundException {
         Persona persona= personarepo.findById(id).orElseThrow(()-> new PersonNotFoundException("No se ha encontrado la persona"));
         personarepo.delete(persona);
 

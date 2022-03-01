@@ -14,7 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PersonaoutputDTO implements Serializable {
 
-    private Integer id_persona;
+    private String id_persona;
     private String usuario;
     private String name;
     private String surname;
