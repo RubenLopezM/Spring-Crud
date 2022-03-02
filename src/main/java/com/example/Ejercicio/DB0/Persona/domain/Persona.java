@@ -1,6 +1,7 @@
 package com.example.Ejercicio.DB0.Persona.domain;
 
 import com.example.Ejercicio.DB0.Estudiante.domain.Estudiante;
+import com.example.Ejercicio.DB0.Profesor.domain.Profesor;
 import com.example.Ejercicio.DB0.StringPrefixedSequenceIdGenerator;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -49,6 +50,9 @@ public class Persona {
 
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Estudiante estudiante;
+
+    @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Profesor profesor;
 
 
 }

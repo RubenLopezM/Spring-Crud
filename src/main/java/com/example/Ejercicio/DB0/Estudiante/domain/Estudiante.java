@@ -1,15 +1,20 @@
 package com.example.Ejercicio.DB0.Estudiante.domain;
 
+import com.example.Ejercicio.DB0.EstudianteAsignatura.domain.Estudiante_Asignatura;
 import com.example.Ejercicio.DB0.Persona.domain.Persona;
 import com.example.Ejercicio.DB0.Profesor.domain.Profesor;
 import com.example.Ejercicio.DB0.StringPrefixedSequenceIdGenerator;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "estudiantes")
 public class Estudiante {
     @Id
@@ -33,5 +38,7 @@ public class Estudiante {
     @Column(nullable = false)
     private String branch;
 
+    @OneToMany(mappedBy = "estudiante", cascade = { CascadeType.ALL })
+    private List<Estudiante_Asignatura> estudianteAsignaturaList = new ArrayList<>();
 
 }

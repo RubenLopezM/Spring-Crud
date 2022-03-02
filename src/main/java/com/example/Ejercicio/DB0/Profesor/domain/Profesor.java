@@ -4,6 +4,7 @@ import com.example.Ejercicio.DB0.Estudiante.domain.Estudiante;
 import com.example.Ejercicio.DB0.Persona.domain.Persona;
 import com.example.Ejercicio.DB0.StringPrefixedSequenceIdGenerator;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
 @Table(name = "profesores")
 public class Profesor {
     @Id

@@ -1,24 +1,21 @@
-package com.example.Ejercicio.DB0.Estudiante.infrastructure.Controller.DTO.output;
+package com.example.Ejercicio.DB0.Persona.Infrastructure.Controller.DTO.output;
 
 import com.example.Ejercicio.DB0.Estudiante.domain.Estudiante;
-import com.example.Ejercicio.DB0.Persona.Infrastructure.Controller.DTO.output.PersonaoutputDTO;
 import com.example.Ejercicio.DB0.Persona.domain.Persona;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 @Data
-@NoArgsConstructor
-public class EstudianteOutputDTO extends PersonaoutputDTO implements Serializable {
+public class PersonaStudentDTO extends PersonaoutputDTO{
     private String id_estudiante;
     private int num_horas_semana;
     private String comentarios;
     private String branch;
 
-
-    public EstudianteOutputDTO(Estudiante estudiante){
-        super(estudiante.getPersona());
+    public PersonaStudentDTO(Persona persona, Estudiante estudiante){
+        super(persona);
+        if (estudiante==null){
+            return;
+        }
         setId_estudiante(estudiante.getId_estudiante());
         setNum_horas_semana(estudiante.getNum_horas_semana());
         setComentarios(estudiante.getComentarios());
