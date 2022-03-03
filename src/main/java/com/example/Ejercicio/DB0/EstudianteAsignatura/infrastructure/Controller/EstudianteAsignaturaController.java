@@ -22,7 +22,7 @@ public class EstudianteAsignaturaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EstudianteAsignaturaListaOuput>  findEstudianteID(@PathVariable String id) throws Exception{
+    public ResponseEntity<EstudianteAsignaturaListaOuput>  getAsignaturasEstudiante(@PathVariable String id) throws Exception{
         return new ResponseEntity<EstudianteAsignaturaListaOuput>(estudianteAsignaturaService.findByIDEstudiante(id),HttpStatus.OK);
     }
 }

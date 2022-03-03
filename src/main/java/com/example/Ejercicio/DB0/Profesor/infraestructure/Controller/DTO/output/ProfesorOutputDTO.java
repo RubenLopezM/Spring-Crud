@@ -4,8 +4,10 @@ import com.example.Ejercicio.DB0.Estudiante.domain.Estudiante;
 import com.example.Ejercicio.DB0.Persona.Infrastructure.Controller.DTO.output.PersonaoutputDTO;
 import com.example.Ejercicio.DB0.Profesor.domain.Profesor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class ProfesorOutputDTO  {
     private String id_profesor;
     private String comentarios;

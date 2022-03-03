@@ -42,6 +42,12 @@ public class ProfesorServieImp implements ProfesorService {
         return profesorOutputDTO;
     }
 
+    @Override
+    public ProfesorOutputDTO findProfesor(String id) throws PersonNotFoundException {
+        Profesor profesor= profesorRepo.getById(id);
+        return new ProfesorOutputDTO(profesor);
+    }
+
     private Profesor convertoProfesor(ProfesorInputDTO profesorInputDTO) throws PersonNotFoundException {
         Profesor profesor= new Profesor();
         profesor.setPersona(personarepo.findById(profesorInputDTO.getId_persona()).orElseThrow(()-> new PersonNotFoundException("No se ha encontrado la persona")));
