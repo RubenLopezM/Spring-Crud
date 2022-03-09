@@ -21,7 +21,7 @@ public class PostProfesorController {
     ProfesorService profesorService;
 
     @PostMapping
-    public ResponseEntity<ProfesorOutputDTO> addEstudiante(@RequestBody ProfesorInputDTO profesorInputDTO) throws Exception{
+    public ResponseEntity<ProfesorOutputDTO> addProfesor(@RequestBody ProfesorInputDTO profesorInputDTO) throws Exception{
         return new ResponseEntity<ProfesorOutputDTO>(profesorService.addProfesor(profesorInputDTO), HttpStatus.CREATED) ;
 
     }

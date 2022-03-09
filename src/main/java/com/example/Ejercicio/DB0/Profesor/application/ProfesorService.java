@@ -7,6 +7,7 @@ import com.example.Ejercicio.DB0.Profesor.infraestructure.Controller.DTO.input.P
 import com.example.Ejercicio.DB0.Profesor.infraestructure.Controller.DTO.output.ProfesorOutputDTO;
 
 public interface ProfesorService {
-    public ProfesorOutputDTO addProfesor(ProfesorInputDTO estudianteinputDTO) throws Exception;
+    public ProfesorOutputDTO addProfesor(ProfesorInputDTO profesorInputDTO) throws Exception;
     public ProfesorOutputDTO findProfesor(String id) throws PersonNotFoundException;
+    public ProfesorOutputDTO updateProfesor(String id,ProfesorInputDTO profesorInputDTO) throws PersonNotFoundException;
 }
