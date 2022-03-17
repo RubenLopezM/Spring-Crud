@@ -54,7 +54,7 @@ public class PersonaServiceImpl implements PersonaService {
 
     @Override
     public PersonaoutputDTO findPersonaid(String id, String outputType) throws PersonNotFoundException {
-        Persona persona = personarepo.findById(id).orElseThrow(() -> new PersonNotFoundException("No hay ninguna persona con ID:" + id));
+        Persona persona = personarepo.findById(id).orElseThrow(() -> new PersonNotFoundException("No hay ninguna persona con ID " + id));
         if (outputType.equalsIgnoreCase("full")) {
             List<Estudiante> estudiantes = estudianterepo.findAll();
             for (Estudiante estudiante : estudiantes) {
@@ -97,7 +97,7 @@ public class PersonaServiceImpl implements PersonaService {
     public PersonaoutputDTO setPerson(PersonainputDTO personainputDTO, String id) throws UnprocesableException, PersonNotFoundException {
 
         this.validar(personainputDTO);
-       Persona persona= personarepo.findById(id).orElseThrow(()->new PersonNotFoundException("No se ha encontrado el registro"));
+       Persona persona= personarepo.findById(id).orElseThrow(()->new PersonNotFoundException("No se ha encontrado la persona con el id"+id));
        persona.setUsuario(personainputDTO.getUsuario());
        persona.setPassword(personainputDTO.getPassword());
        persona.setCity(personainputDTO.getCity());
@@ -113,8 +113,10 @@ public class PersonaServiceImpl implements PersonaService {
     }
 
     @Override
-    public void deletePerson(String id) throws PersonNotFoundException {
+    public void deletePerson(String id) throws PersonNotFoundException, UnprocesableException {
         Persona persona= personarepo.findById(id).orElseThrow(()-> new PersonNotFoundException("No se ha encontrado la persona"));
+        if (persona.getEstudiante()!=null) throw  new UnprocesableException("La persona es un estudiante");
+        if (persona.getProfesor()!=null) throw new UnprocesableException("La persona es un profesor");
         personarepo.delete(persona);
 
     }
@@ -194,9 +196,10 @@ public class PersonaServiceImpl implements PersonaService {
     private void validar(PersonainputDTO personainputDTO) throws UnprocesableException{
         String usuario= personainputDTO.getUsuario();
 
-        if (usuario==null) throw new UnprocesableException("Error: Usuario no puede ser nulo");
-        if (usuario.length()>10 || usuario.length()<6) throw new UnprocesableException("Error: El usuario debe tener entre 6 y 10 caracteres");;
-        if (personainputDTO.getPassword()==null) throw new UnprocesableException("Error: Se debe introducir una contraseña");
+        if (usuario==null) throw new UnprocesableException("Usuario no puede ser nulo");
+        if (usuario.length()>10 || usuario.length()<6) throw new UnprocesableException("El usuario debe tener entre 6 y 10 caracteres");;
+        if (personainputDTO.getPassword()==null) throw new UnprocesableException("Se debe introducir una contraseña");
+        if (personainputDTO.getCreated_date()==null) throw new UnprocesableException("Se debe introducir una fecha");
     }
 }
 

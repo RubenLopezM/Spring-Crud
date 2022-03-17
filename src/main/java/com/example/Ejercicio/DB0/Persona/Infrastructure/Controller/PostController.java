@@ -17,7 +17,7 @@ public class PostController {
     @Autowired
     PersonaService personaService;
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<PersonaoutputDTO>  addPerson(@RequestBody PersonainputDTO personainputDTO) throws Exception{
         return new ResponseEntity<PersonaoutputDTO>(personaService.addPerson(personainputDTO), HttpStatus.CREATED) ;

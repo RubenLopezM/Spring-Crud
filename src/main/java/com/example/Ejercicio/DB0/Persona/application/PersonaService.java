@@ -15,5 +15,5 @@ public interface PersonaService {
   public PersonaListOutputDTO findUsuario(String usuario, String outputType);
   public PersonaListOutputDTO getUsuarios(String outputType);
   public PersonaoutputDTO setPerson(PersonainputDTO personainputDTO, String id) throws UnprocesableException,PersonNotFoundException;
-  public void deletePerson(String id) throws PersonNotFoundException;
+  public void deletePerson(String id) throws PersonNotFoundException, UnprocesableException;
 }
