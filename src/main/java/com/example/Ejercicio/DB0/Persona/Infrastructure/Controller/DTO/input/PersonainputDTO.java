@@ -1,6 +1,7 @@
 package com.example.Ejercicio.DB0.Persona.Infrastructure.Controller.DTO.input;
 
 import com.example.Ejercicio.DB0.Persona.domain.Persona;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonainputDTO {
 
 
@@ -22,6 +25,7 @@ public class PersonainputDTO {
     private Date created_date;
     private String imagen_url;
     private Date termination_date;
+    private boolean admin;
 
 
 }

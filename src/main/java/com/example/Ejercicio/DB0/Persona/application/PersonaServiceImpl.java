@@ -17,6 +17,9 @@ import com.example.Ejercicio.DB0.Profesor.domain.Profesor;
 import com.example.Ejercicio.DB0.Profesor.infraestructure.Repository.ProfesorRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
@@ -159,6 +162,11 @@ public class PersonaServiceImpl implements PersonaService {
         return listOutputDTO;
     }
 
+    public void checkPassword(String usuario, String password){
+        Persona persona= (personarepo.findByUsuario(usuario)).get(0);
+        if (!persona.getPassword().equals(password)) throw new UnprocesableException("La contraseña no es correcta");
+
+    }
 
     private  PersonaoutputDTO convertToDTO(Persona persona){
         PersonaoutputDTO personaoutputDTO= new PersonaoutputDTO();
@@ -173,6 +181,7 @@ public class PersonaServiceImpl implements PersonaService {
         personaoutputDTO.setCompany_email(persona.getCompany_email());
         personaoutputDTO.setImagen_url(persona.getImagen_url());
         personaoutputDTO.setTermination_date(persona.getTermination_date());
+        personaoutputDTO.setAdmin(persona.isAdmin());
         return personaoutputDTO;
     }
 
@@ -189,6 +198,7 @@ public class PersonaServiceImpl implements PersonaService {
         persona.setCompany_email(personainputDTO.getCompany_email());
         persona.setImagen_url(personainputDTO.getImagen_url());
         persona.setTermination_date(personainputDTO.getTermination_date());
+        persona.setAdmin(personainputDTO.isAdmin());
         return  persona;
 
     }
@@ -201,6 +211,8 @@ public class PersonaServiceImpl implements PersonaService {
         if (personainputDTO.getPassword()==null) throw new UnprocesableException("Se debe introducir una contraseña");
         if (personainputDTO.getCreated_date()==null) throw new UnprocesableException("Se debe introducir una fecha");
     }
+
+
 }
 
 

@@ -28,7 +28,7 @@ public class Persona {
 
     @Column(name = "id_persona",updatable = false)
     private String id_persona;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String usuario;
     @Column(nullable = false)
     private String password;
@@ -53,6 +53,8 @@ public class Persona {
 
     @OneToOne(mappedBy = "persona", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private Profesor profesor;
+    @Column(nullable = false)
+    private boolean admin;
 
 
 }

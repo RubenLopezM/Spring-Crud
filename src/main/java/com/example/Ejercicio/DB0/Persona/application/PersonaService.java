@@ -16,4 +16,5 @@ public interface PersonaService {
   public PersonaListOutputDTO getUsuarios(String outputType);
   public PersonaoutputDTO setPerson(PersonainputDTO personainputDTO, String id) throws UnprocesableException,PersonNotFoundException;
   public void deletePerson(String id) throws PersonNotFoundException, UnprocesableException;
+  public void checkPassword(String  usuario,String Password);
 }
